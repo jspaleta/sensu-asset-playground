@@ -4,4 +4,6 @@ lib/*
 !lib/.keep
 include/*
 !include/.keep
+*.swp
 
+src/metric_checks/linux/build/*

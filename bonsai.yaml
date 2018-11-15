@@ -7,7 +7,7 @@ builds:
   sha_filename: "test_asset-#{version}-linux-x86_64.sha512.txt" 
   filter:
   -  "System.OS == linux"
-  -  "System.Arch == x86_64"
+  -  "(System.Arch == x86_64) || (System.Arch == amd64)"
 
 - platform: "OSX"
   arch: "x86_64"
@@ -15,7 +15,7 @@ builds:
   sha_filename: "test_asset-#{version}-OSX-x86_64.sha512.txt" 
   filter:
   -  "System.OS == OSX"
-  -  "System.Arch == x86_64"
+  -  "(System.Arch == x86_64) || (System.Arch == amd64)"
 
 - platform: "alpine" 
   arch: "x86_64"
@@ -23,7 +23,7 @@ builds:
   sha_filename: "test_asset-#{version}-alpine-x86_64.sha512.txt" 
   filter:
   -  "System.OS == linux"
-  -  "System.Arch == x86_64"
+  -  "(System.Arch == x86_64) || (System.Arch == amd64)"
   -  "System.Platform == alpine"
 
 - platform: "linux"

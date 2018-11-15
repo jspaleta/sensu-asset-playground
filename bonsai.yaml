@@ -5,25 +5,46 @@ builds:
   arch: "x86_64"
   asset_filename: "test_asset-#{version}-linux-x86_64.tar.gz" 
   sha_filename: "test_asset-#{version}-linux-x86_64.sha512.txt" 
+  filter:
+  -  "System.OS == linux"
+  -  "System.Arch == x86_64"
+
 - platform: "OSX"
   arch: "x86_64"
   asset_filename: "test_asset-#{version}-OSX-x86_64.tar.gz" 
   sha_filename: "test_asset-#{version}-OSX-x86_64.sha512.txt" 
+  filter:
+  -  "System.OS == OSX"
+  -  "System.Arch == x86_64"
+
 - platform: "alpine" 
   arch: "x86_64"
   asset_filename: "check_http-#{version}-alpine-x86_64.tar.gz"
   sha_filename: "test_asset-#{version}-alpine-x86_64.sha512.txt" 
+  filter:
+  -  "System.OS == linux"
+  -  "System.Arch == x86_64"
+  -  "System.Platform == alpine"
+
 - platform: "linux"
   arch: "ppc"
   asset_filename: "test_asset-#{version}-linux-ppc.tar.gz" 
   sha_filename: "test_asset-#{version}-linux-ppc.sha512.txt" 
+
 - platform: "linux"
   arch: "aarch64"
   asset_filename: "test_asset-#{version}-linux-aarch64.tar.gz" 
   sha_filename: "test_asset-#{version}-linux-aarch64.sha512.txt" 
+  filter:
+  -  "System.OS == linux"
+  -  "System.Arch == aarch64"
+
 - platform: "linux"
   arch: "armv7hl"
   asset_filename: "test_asset-#{version}-linux-armv7hl.tar.gz" 
   sha_filename: "test_asset-#{version}-linux-armv7hl.sha512.txt" 
+  filter:
+  -  "System.OS == linux"
+  -  "System.Arch == armv7hl"
 ...
 

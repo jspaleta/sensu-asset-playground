@@ -1,0 +1,13 @@
+---
+description: "Test Asset"
+annotations:
+  test: "value"
+builds:
+- platform: "OSX"
+  arch: "x86_64"
+  asset_filename: "#{repo}_#{version}_darwin_amd64.tar.gz"
+  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  filter:
+  -  "entity.system.os == 'darwin'"
+  -  "entity.system.arch == 'amd64'"
+

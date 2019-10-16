@@ -1,5 +1,7 @@
 ---
 description: "Test Asset"
+labels:
+  example: "custom"      
 annotations:
   test: "value"
 builds:

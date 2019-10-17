@@ -3,7 +3,7 @@ description: "Test Asset"
 labels:
   example: "custom"      
 annotations:
-  sensu.bonsai.io.test: "value"
+  io.sensu.bonsai.test: "value"
 builds:
 - platform: "OSX"
   arch: "amd64"

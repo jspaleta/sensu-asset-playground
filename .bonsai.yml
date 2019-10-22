@@ -4,6 +4,7 @@ labels:
   example: "custom"      
 annotations:
   test: "value"
+  io.sensu.bonsai.thing: "one"
 builds:
 - platform: "OSX"
   arch: "amd64"

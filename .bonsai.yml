@@ -1,10 +1,22 @@
 ---
 description: "Test Asset"
 labels:
+# Labels are ignored by bonsai at this time.
   example: "custom"      
+
 annotations:
-  test: "value"
-  io.sensu.bonsai.thing: "one"
+# all annotations will be prefixed with io.sensu.bonsai in public bonsai
+# On-prems bonsai will have configurable prefix 
+  # Example annotation becomes io.sensu.bonsai.example
+  example: "value"
+  # Test annotation stays as io.sensu.bonsai.test
+  io.sensu.bonsai.test: "one,two,three"
+
+  # asset_type and asset_provider used by sensuctl to determine suitability
+  # for speicifc asset roles
+  asset_type: "sensuctl"
+  asset_provider: "sensuctl/command"
+
 builds:
 - platform: "OSX"
   arch: "amd64"

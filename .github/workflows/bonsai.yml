@@ -1,6 +1,9 @@
 name: bonsai-build
 
-on: [push]
+on:
+  push:
+    branches:    
+      - 'master'
 
 jobs:
   bonsai-build:

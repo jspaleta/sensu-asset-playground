@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo bonsai url
-        run: echo "${BONSAI_BUILD_URL}"
+        run: echo "curl -v -XPOST -H X-GitHub-Token: ${BONSAI_GITHUB_TOKEN} ${BONSAI_BUILD_URL}"
         env:
+          BONSAI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BONSAI_BUILD_URL: https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build
       - name: request bonsai rebuild
-        run: "curl -v -XPOST -H X-GitHub-Token: ${BONSAI_GITHUB_TOKEN} ${BONSAI_BUILD_URL}"
+        run: curl -v -XPOST -H "X-GitHub-Token: ${BONSAI_GITHUB_TOKEN}" ${BONSAI_BUILD_URL}
         env:
           BONSAI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BONSAI_BUILD_URL: https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build

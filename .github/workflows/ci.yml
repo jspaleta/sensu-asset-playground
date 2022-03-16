@@ -1,0 +1,12 @@
+name: goreleaser
+
+on:
+  push
+
+jobs:
+  bonsai-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: always true
+        run: >
+          true

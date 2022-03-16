@@ -1,15 +1,16 @@
-name: bonsai-build
-
 on:
-  push
+  workflow_run:
+    workflows: ["goreleaser"]
+    types:
+      - completed
 
 jobs:
   bonsai-build:
     runs-on: ubuntu-latest
     steps:
       - name: request bonsai rebuild
+        continue-on-error: true
         run: >
-          curl -v -XPOST 
-          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}" 
+          curl -v -XPOST
+          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
-

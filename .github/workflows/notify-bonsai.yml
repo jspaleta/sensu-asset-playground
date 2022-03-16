@@ -1,3 +1,5 @@
+name: notify bonsai
+
 on:
   workflow_run:
     workflows: ["goreleaser"]

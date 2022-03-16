@@ -8,5 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: request bonsai rebuild
-        run: curl -v -XPOST -H 'X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}' https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build
+        run: >
+          curl -v -XPOST 
+          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}" 
+          --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
 

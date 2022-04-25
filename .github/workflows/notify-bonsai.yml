@@ -8,6 +8,8 @@ on:
     types:
       - completed
 
+permissions: read-all
+
 jobs:
   bonsai-build:
     runs-on: ubuntu-latest

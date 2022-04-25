@@ -1,14 +1,17 @@
-name: notify bonsai
+name: Bonsai Request Rebuild
 
 on:
   workflow_run:
-    workflows: ["goreleaser"]
+    workflows: 
+      - goreleaser
+      - Go Test
     types:
       - completed
 
 jobs:
   bonsai-build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: request bonsai rebuild
         continue-on-error: true

@@ -1,10 +1,10 @@
-name: goreleaser
+name: Go Test
 
 on:
   push
 
 jobs:
-  bonsai-build:
+  always_true:
     runs-on: ubuntu-latest
     steps:
       - name: always true

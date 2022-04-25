@@ -13,6 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: get versions
+        continue-on-error: true
+        run: >
+          curl -v -XGET
+          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
+          --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}"
       - name: request bonsai rebuild
         continue-on-error: true
         run: >

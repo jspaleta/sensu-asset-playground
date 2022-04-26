@@ -8,8 +8,6 @@ on:
     types:
       - completed
 
-permissions: read-all
-
 jobs:
   bonsai-build:
     runs-on: ubuntu-latest
@@ -21,6 +19,12 @@ jobs:
           curl -v -XGET
           -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}"
+      - name: get repo scopes
+        continue-on-error: true
+        run: >
+          curl -v -XGET
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
+          --url "https://api.github.com/${{ github.repository }}"
       - name: request bonsai rebuild using provided secret
         continue-on-error: true
         run: >

@@ -25,18 +25,20 @@ jobs:
           curl -v -XPOST
           -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
-      - name: request repository info for this repo using action generated secret
+      - name: request repository noop update for this repo using action generated secret
         continue-on-error: true
         run: >
-          curl -v 
-          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
-          --url "https://api.github.com/repos/${{ github.repository }}"
-      - name: request repository info for wrong repo using action generated secret
+          curl -v -XPATCH
+          -H 'Accept: application/vnd.github.v3+json'
+          -H 'X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}'
+          --url 'https://api.github.com/repos/${{ github.repository }}' -d '{}'
+      - name: request repository noop update for wrong repo using action generated secret
         continue-on-error: true
         run: >
-          curl -v 
-          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
-          --url "https://api.github.com/repos/sensu/sensu-go"
+          curl -v -XPATCH
+          -H 'Accept: application/vnd.github.v3+json' 
+          -H 'X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}'
+          --url 'https://api.github.com/repos/jspaleta/action-tests' -d '{}'
       - name: request bonsai rebuild using personal access token
         continue-on-error: true
         run: >

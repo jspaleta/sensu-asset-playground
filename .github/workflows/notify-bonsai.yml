@@ -23,7 +23,7 @@ jobs:
         continue-on-error: true
         run: >
           curl -v -XGET
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
+          -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
           --url "https://api.github.com/${{ github.repository }}"
       - name: request bonsai rebuild using provided secret
         continue-on-error: true

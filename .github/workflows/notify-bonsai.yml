@@ -25,6 +25,18 @@ jobs:
           curl -v -XPOST
           -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
+      - name: request repository info for this repo using action generated secret
+        continue-on-error: true
+        run: >
+          curl -v 
+          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
+          --url "https://api.github.com/repos/${{ github.repository }}"
+      - name: request repository info for wrong repo using action generated secret
+        continue-on-error: true
+        run: >
+          curl -v 
+          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
+          --url "https://api.github.com/repos/sensu/sensu-go"
       - name: request bonsai rebuild using personal access token
         continue-on-error: true
         run: >

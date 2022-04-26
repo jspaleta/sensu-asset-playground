@@ -19,25 +19,13 @@ jobs:
           curl -v -XGET
           -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}"
-      - name: get action workflows
-        continue-on-error: true
-        run: >
-          curl -v 
-          -H 'Authorization: bearer ${{ secrets.GITHUB_TOKEN }}'
-          --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows"
-      - name: get auth scopes
-        continue-on-error: true
-        run: >
-          curl -s  -o /dev/null -D - 
-          -H 'Authorization: bearer ${{ secrets.GITHUB_TOKEN }}'
-          --url "https://api.github.com/repos/${{ github.repository }}"
-      - name: request bonsai rebuild using provided secret
+      - name: request bonsai rebuild using action generated secret
         continue-on-error: true
         run: >
           curl -v -XPOST
           -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
-      - name: request bonsai rebuild using added secret
+      - name: request bonsai rebuild using personal access token
         continue-on-error: true
         run: >
           curl -v -XPOST

@@ -1,4 +1,4 @@
-name: Bonsai Request Rebuild
+name: Bonsai
 
 on:
   workflow_run:
@@ -9,7 +9,7 @@ on:
       - completed
 
 jobs:
-  bonsai-build:
+  bonsai-recompile:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -19,29 +19,6 @@ jobs:
           curl -v -XGET
           -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
           --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}"
-      - name: request bonsai rebuild using action generated secret
+      - name: bonsai-webhook
         continue-on-error: true
-        run: >
-          curl -v -XPOST
-          -H "X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}"
-          --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
-      - name: request repository noop update for this repo using action generated secret
-        continue-on-error: true
-        run: >
-          curl -v -XPATCH
-          -H 'Accept: application/vnd.github.v3+json'
-          -H 'X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}'
-          --url 'https://api.github.com/repos/${{ github.repository }}' -d '{}'
-      - name: request repository noop update for wrong repo using action generated secret
-        continue-on-error: true
-        run: >
-          curl -v -XPATCH
-          -H 'Accept: application/vnd.github.v3+json' 
-          -H 'X-GitHub-Token: ${{ secrets.GITHUB_TOKEN }}'
-          --url 'https://api.github.com/repos/jspaleta/action-tests' -d '{}'
-      - name: request bonsai rebuild using personal access token
-        continue-on-error: true
-        run: >
-          curl -v -XPOST
-          -H "X-GitHub-Token: ${{ secrets.BONSAI_GITHUB_TOKEN }}"
-          --url "https://bonsai-asset-index-staging.herokuapp.com/assets/${{ github.repository }}/build"
+        run: echo "Trigger recompile on 'completed' workflow_job event matching workflow_job.name 'bonsai-recompile' and workflow.name 'bonsai'"
